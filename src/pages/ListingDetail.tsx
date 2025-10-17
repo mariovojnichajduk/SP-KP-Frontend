@@ -139,7 +139,7 @@ const ListingDetail = () => {
                 <div className="image-gallery">
                   <div className="main-image-container">
                     <img
-                      src={listing.images[currentImageIndex]}
+                      src={listing.images[currentImageIndex].url}
                       alt={`${listing.title} - Image ${currentImageIndex + 1}`}
                       className="main-image"
                     />
@@ -194,7 +194,7 @@ const ListingDetail = () => {
                           }`}
                           onClick={() => setCurrentImageIndex(index)}
                         >
-                          <img src={image} alt={`Thumbnail ${index + 1}`} />
+                          <img src={image.thumbUrl || image.url} alt={`Thumbnail ${index + 1}`} />
                         </button>
                       ))}
                     </div>
