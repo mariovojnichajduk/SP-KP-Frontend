@@ -164,7 +164,7 @@ const Header = ({ onSearch, onFilterClick, showFilter = false, showSearch = fals
           </button>
           <button
             className="nav-button"
-            onClick={() => console.log('Profile Settings - Placeholder')}
+            onClick={() => navigate('/profile')}
           >
             Profile
           </button>
@@ -200,7 +200,7 @@ const Header = ({ onSearch, onFilterClick, showFilter = false, showSearch = fals
           <button
             className="mobile-nav-button"
             onClick={() => {
-              console.log('Profile Settings - Placeholder');
+              navigate('/profile');
               setMenuOpen(false);
             }}
           >

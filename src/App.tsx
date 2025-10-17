@@ -8,6 +8,7 @@ import MyListings from './pages/MyListings';
 import AddListing from './pages/AddListing';
 import EditListing from './pages/EditListing';
 import ListingDetail from './pages/ListingDetail';
+import Profile from './pages/Profile';
 import ProtectedRoute from './components/ProtectedRoute';
 import './styles/global.css';
 
@@ -59,9 +60,17 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route
+            path="/profile"
+            element={
+              <ProtectedRoute>
+                <Profile />
+              </ProtectedRoute>
+            }
+          />
         </Routes>
         <ToastContainer
-          position="top-right"
+          position="bottom-right"
           autoClose={3000}
           hideProgressBar={false}
           newestOnTop={false}
