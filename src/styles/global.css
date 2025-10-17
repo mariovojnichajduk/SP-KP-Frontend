@@ -1,0 +1,48 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --color-dark-gray: #232323;
+  --color-red-accent: #ee2c44;
+  --color-white: #ffffff;
+  --color-light-gray: #f9f9f9;
+  --color-border-gray: #ddd;
+  --color-text-gray: #666;
+}
+
+html,
+body {
+  width: 100%;
+  min-width: 100%;
+  overflow-x: hidden;
+}
+
+body {
+  font-family: 'Arial', sans-serif;
+  background-color: var(--color-light-gray);
+  color: var(--color-dark-gray);
+  line-height: 1.6;
+}
+
+#root,
+.app {
+  width: 100%;
+  min-height: 100vh;
+}
+
+button {
+  cursor: pointer;
+  font-family: inherit;
+}
+
+input {
+  font-family: inherit;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}

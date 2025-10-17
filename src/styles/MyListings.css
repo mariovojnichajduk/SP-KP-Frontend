@@ -1,0 +1,141 @@
+.my-listings-page {
+  min-height: 100vh;
+  background-color: #f4f4f4;
+  width: 100%;
+}
+
+.my-listings-content {
+  padding: 30px 20px;
+  width: 100%;
+}
+
+.my-listings-container {
+  max-width: 1400px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.my-listings-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 30px;
+  gap: 16px;
+}
+
+.my-listings-title {
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--color-dark-gray);
+  margin: 0;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  vertical-align: middle;
+}
+
+.add-listing-button {
+  width: 48px;
+  height: 48px;
+  background-color: var(--color-red-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 8px rgba(238, 44, 68, 0.3);
+}
+
+.add-listing-button:hover {
+  background-color: #d12538;
+  box-shadow: 0 4px 12px rgba(238, 44, 68, 0.4);
+}
+
+.add-listing-button:active {
+  transform: scale(0.98);
+}
+
+.add-listing-button.hidden {
+  display: none;
+}
+
+.loading-container,
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--color-text-gray);
+  font-size: 16px;
+  width: 100%;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 20px;
+}
+
+.empty-state p {
+  margin: 0;
+}
+
+.create-first-button {
+  padding: 12px 24px;
+  background-color: var(--color-red-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.create-first-button:hover {
+  background-color: #d12538;
+}
+
+.listings-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
+/* Tablet */
+@media (min-width: 640px) {
+  .listings-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .my-listings-content {
+    padding: 40px 30px;
+  }
+
+  .my-listings-title {
+    font-size: 32px;
+    margin-bottom: 40px;
+  }
+
+  .add-listing-button {
+    width: 56px;
+    height: 56px;
+  }
+
+  .listings-grid {
+    grid-template-columns: repeat(3, 1fr);
+    gap: 24px;
+  }
+}
+
+/* Large Desktop */
+@media (min-width: 1280px) {
+  .listings-grid {
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
