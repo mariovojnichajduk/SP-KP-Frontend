@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import Header from '../components/Header';
+import ContactSellerModal from '../components/ContactSellerModal';
 import { listingsApi } from '../api/listingsApi';
 import type { Listing } from '../types/listing';
 import { toast } from 'react-toastify';
@@ -12,6 +13,7 @@ const ListingDetail = () => {
   const [listing, setListing] = useState<Listing | null>(null);
   const [loading, setLoading] = useState(true);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [isContactModalOpen, setIsContactModalOpen] = useState(false);
   const hasFetched = useRef(false);
 
   useEffect(() => {
@@ -249,18 +251,38 @@ const ListingDetail = () => {
               <div className="listing-detail-seller">
                 <h3>Seller Information</h3>
                 {listing.user ? (
-                  <div className="seller-info">
-                    <div className="seller-avatar">
-                      {listing.user.firstName[0]}
-                      {listing.user.lastName[0]}
+                  <>
+                    <div className="seller-info">
+                      <div className="seller-avatar">
+                        {listing.user.firstName[0]}
+                        {listing.user.lastName[0]}
+                      </div>
+                      <div className="seller-details">
+                        <p className="seller-name">
+                          {listing.user.firstName} {listing.user.lastName}
+                        </p>
+                      </div>
                     </div>
-                    <div className="seller-details">
-                      <p className="seller-name">
-                        {listing.user.firstName} {listing.user.lastName}
-                      </p>
-                      <p className="seller-email">{listing.user.email}</p>
-                    </div>
-                  </div>
+                    <button
+                      className="contact-seller-button"
+                      onClick={() => setIsContactModalOpen(true)}
+                    >
+                      <svg
+                        width="18"
+                        height="18"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        strokeWidth="2"
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                      >
+                        <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+                        <polyline points="22,6 12,13 2,6"></polyline>
+                      </svg>
+                      Contact Seller
+                    </button>
+                  </>
                 ) : (
                   <p>Anonymous Seller</p>
                 )}
@@ -288,6 +310,13 @@ const ListingDetail = () => {
           </div>
         </div>
       </main>
+
+      <ContactSellerModal
+        isOpen={isContactModalOpen}
+        onClose={() => setIsContactModalOpen(false)}
+        sellerName={`${listing.user?.firstName} ${listing.user?.lastName}`}
+        listingTitle={listing.title}
+      />
     </div>
   );
 };

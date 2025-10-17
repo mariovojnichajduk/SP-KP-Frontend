@@ -253,7 +253,7 @@
   width: 50px;
   height: 50px;
   border-radius: 50%;
-  background-color: var(--color-red-accent);
+  background-color: var(--color-dark-gray);
   color: var(--color-white);
   display: flex;
   align-items: center;
@@ -279,6 +279,32 @@
   font-size: 14px;
   color: var(--color-text-gray);
   margin: 0;
+}
+
+.contact-seller-button {
+  width: 100%;
+  padding: 12px 16px;
+  background-color: var(--color-red-accent);
+  color: var(--color-white);
+  border: none;
+  border-radius: 8px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+}
+
+.contact-seller-button svg {
+  stroke: var(--color-white);
+}
+
+.contact-seller-button:hover {
+  background-color: #d12538;
 }
 
 .listing-detail-footer {
