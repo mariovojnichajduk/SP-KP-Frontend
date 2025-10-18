@@ -70,13 +70,13 @@ const Header = ({ onSearch, onFilterClick, showFilter = false, showSearch = fals
           </svg>
         </button>
 
-        <div className="header-left desktop-only-logo">
+        <div className="header-left desktop-only-logo" onClick={() => navigate('/home')}>
           <img
             src="https://i.postimg.cc/gkJD38Lv/logo.png"
             alt="StudioPresent Logo"
             className="header-logo"
-            onClick={() => navigate('/home')}
           />
+          <span className="marketplace-text">Marketplace</span>
         </div>
 
         {showSearch && (

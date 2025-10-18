@@ -64,6 +64,13 @@
   object-fit: contain;
 }
 
+.marketplace-text {
+  color: var(--color-white);
+  font-size: 20px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+}
+
 .header-center {
   flex: 1;
   display: flex;
