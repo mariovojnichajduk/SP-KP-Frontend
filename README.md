@@ -1,8 +1,8 @@
-# StudioPresent Frontend
+# StudioPresent Marketplace Frontend
 
 ## Description
 
-StudioPresent is a modern marketplace platform frontend built with React, TypeScript, and Vite. The application provides a responsive user interface for browsing products, managing listings, user authentication, and seller-buyer communication. It features state management with Redux Toolkit, client-side routing with React Router, and real-time notifications.
+StudioPresent Marketplace is a modern marketplace platform frontend built with React, TypeScript, and Vite. The application provides a responsive user interface for browsing products, managing listings, user authentication, and seller-buyer communication. It features state management with Redux Toolkit, client-side routing with React Router, and real-time notifications.
 
 ## Technologies & Libraries
 

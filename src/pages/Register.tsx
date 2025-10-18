@@ -165,7 +165,7 @@ const Register = () => {
             className="logo"
           />
           <h1>Create Account</h1>
-          <p>Join StudioPresent today</p>
+          <p>Join StudioPresent Marketplace today</p>
         </div>
 
         <form onSubmit={handleRegister} className="register-form">
