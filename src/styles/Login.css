@@ -107,6 +107,25 @@
   box-shadow: 0 0 0 3px rgba(238, 44, 68, 0.1);
 }
 
+.forgot-password-link {
+  text-align: right;
+  margin-top: -12px;
+  margin-bottom: 16px;
+}
+
+.forgot-password-link a {
+  color: var(--color-red-accent);
+  font-size: 13px;
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.forgot-password-link a:hover {
+  color: var(--color-red-hover);
+  text-decoration: underline;
+}
+
 .login-button {
   width: 100%;
   padding: 12px;

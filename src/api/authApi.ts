@@ -68,6 +68,17 @@ export interface VerifyEmailResponse {
   message: string;
 }
 
+export interface ForgotPasswordData {
+  email: string;
+}
+
+export interface ResetPasswordData {
+  email: string;
+  resetCode: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export const authApi = {
   login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
     const response = await api.post('/auth/login', credentials);
@@ -86,6 +97,16 @@ export const authApi = {
 
   resendVerification: async (email: string): Promise<{ message: string }> => {
     const response = await api.post('/users/resend-verification', { email });
+    return response.data;
+  },
+
+  forgotPassword: async (data: ForgotPasswordData): Promise<{ message: string }> => {
+    const response = await api.post('/auth/forgot-password', data);
+    return response.data;
+  },
+
+  resetPassword: async (data: ResetPasswordData): Promise<{ message: string }> => {
+    const response = await api.post('/auth/reset-password', data);
     return response.data;
   },
 };
