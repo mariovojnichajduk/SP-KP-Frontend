@@ -160,7 +160,7 @@
 /* Desktop styles */
 @media (min-width: 768px) {
   .register-card {
-    max-width: 550px;
+    max-width: 650px;
   }
 
   .register-header {
