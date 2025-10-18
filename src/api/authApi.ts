@@ -79,6 +79,12 @@ export interface ResetPasswordData {
   confirmPassword: string;
 }
 
+export interface ChangePasswordData {
+  oldPassword: string;
+  newPassword: string;
+  confirmPassword: string;
+}
+
 export const authApi = {
   login: async (credentials: LoginCredentials): Promise<LoginResponse> => {
     const response = await api.post('/auth/login', credentials);
@@ -107,6 +113,11 @@ export const authApi = {
 
   resetPassword: async (data: ResetPasswordData): Promise<{ message: string }> => {
     const response = await api.post('/auth/reset-password', data);
+    return response.data;
+  },
+
+  changePassword: async (data: ChangePasswordData): Promise<{ message: string }> => {
+    const response = await api.post('/auth/change-password', data);
     return response.data;
   },
 };

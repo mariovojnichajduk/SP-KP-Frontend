@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppSelector } from '../store/hooks';
 import Header from '../components/Header';
+import ChangePasswordModal from '../components/ChangePasswordModal';
 import { usersApi } from '../api/usersApi';
 import { toast } from 'react-toastify';
 import '../styles/Profile.css';
@@ -18,6 +19,7 @@ const Profile = () => {
 
   const [loading, setLoading] = useState(false);
   const [saving, setSaving] = useState(false);
+  const [isPasswordModalOpen, setIsPasswordModalOpen] = useState(false);
   const [formData, setFormData] = useState({
     firstName: '',
     lastName: '',
@@ -159,6 +161,17 @@ const Profile = () => {
                 <h1 className="profile-title">Profile Settings</h1>
                 <p className="profile-email">{user?.email}</p>
               </div>
+              <button
+                type="button"
+                className="btn-change-password"
+                onClick={() => setIsPasswordModalOpen(true)}
+              >
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                  <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
+                  <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
+                </svg>
+                Change Password
+              </button>
             </div>
 
             <form onSubmit={handleSubmit} className="profile-form">
@@ -232,6 +245,11 @@ const Profile = () => {
             </form>
           </div>
         </div>
+
+        <ChangePasswordModal
+          isOpen={isPasswordModalOpen}
+          onClose={() => setIsPasswordModalOpen(false)}
+        />
       </main>
     </div>
   );
