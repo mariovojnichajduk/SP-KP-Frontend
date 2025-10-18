@@ -54,12 +54,15 @@ const FilterModal = ({ isOpen, onClose, onApply, currentFilters }: FilterModalPr
   };
 
   const handleReset = () => {
-    setFilters({
+    const resetFilters = {
       categoryId: '',
       condition: '',
       minPrice: undefined,
       maxPrice: undefined,
-    });
+    };
+    setFilters(resetFilters);
+    onApply({});
+    onClose();
   };
 
   const handlePriceChange = (field: 'minPrice' | 'maxPrice', value: string) => {
