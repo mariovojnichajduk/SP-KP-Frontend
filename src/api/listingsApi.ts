@@ -68,4 +68,14 @@ export const listingsApi = {
   delete: async (id: string): Promise<void> => {
     await api.delete(`/listings/${id}`);
   },
+
+  contactSeller: async (id: string, data: {
+    name: string;
+    email: string;
+    phone?: string;
+    message: string;
+  }): Promise<{ message: string }> => {
+    const response = await api.post(`/listings/${id}/contact-seller`, data);
+    return response.data;
+  },
 };

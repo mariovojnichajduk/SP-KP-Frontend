@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { listingsApi } from '../api/listingsApi';
+import { toast } from 'react-toastify';
 import '../styles/ContactSellerModal.css';
 
 interface ContactSellerModalProps {
@@ -6,6 +8,7 @@ interface ContactSellerModalProps {
   onClose: () => void;
   sellerName: string;
   listingTitle: string;
+  listingId: string;
 }
 
 const ContactSellerModal = ({
@@ -13,16 +16,32 @@ const ContactSellerModal = ({
   onClose,
   sellerName,
   listingTitle,
+  listingId,
 }: ContactSellerModalProps) => {
   const [name, setName] = useState('');
   const [email, setEmail] = useState('');
   const [phone, setPhone] = useState('');
   const [message, setMessage] = useState('');
+  const [sending, setSending] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // TODO: Implement send email functionality
-    console.log('Contact form submitted:', { name, email, phone, message });
+
+    try {
+      setSending(true);
+      await listingsApi.contactSeller(listingId, {
+        name,
+        email,
+        phone,
+        message,
+      });
+      toast.success('Message sent successfully to the seller!');
+      handleClose();
+    } catch (error: any) {
+      toast.error(error.response?.data?.message || 'Failed to send message. Please try again.');
+    } finally {
+      setSending(false);
+    }
   };
 
   const handleClose = () => {
@@ -124,11 +143,12 @@ const ContactSellerModal = ({
                 type="button"
                 onClick={handleClose}
                 className="btn-cancel"
+                disabled={sending}
               >
                 Cancel
               </button>
-              <button type="submit" className="btn-send">
-                Send Message
+              <button type="submit" className="btn-send" disabled={sending}>
+                {sending ? 'Sending...' : 'Send Message'}
               </button>
             </div>
           </form>

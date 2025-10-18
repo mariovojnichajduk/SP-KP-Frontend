@@ -316,6 +316,7 @@ const ListingDetail = () => {
         onClose={() => setIsContactModalOpen(false)}
         sellerName={`${listing.user?.firstName} ${listing.user?.lastName}`}
         listingTitle={listing.title}
+        listingId={listing.id}
       />
     </div>
   );
