@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import Header from '../components/Header';
 import ListingCard from '../components/ListingCard';
+import FilterModal from '../components/FilterModal';
+import type { FilterOptions } from '../components/FilterModal';
 import { listingsApi } from '../api/listingsApi';
 import { useAppSelector } from '../store/hooks';
 import type { Listing } from '../types/listing';
@@ -12,6 +14,8 @@ const MyListings = () => {
   const [listings, setListings] = useState<Listing[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
+  const [isFilterOpen, setIsFilterOpen] = useState(false);
+  const [activeFilters, setActiveFilters] = useState<FilterOptions>({});
   const navigate = useNavigate();
   const { user } = useAppSelector((state) => state.auth);
 
@@ -19,18 +23,30 @@ const MyListings = () => {
     fetchMyListings();
   }, []);
 
-  const fetchMyListings = async (search?: string) => {
+  const fetchMyListings = async (search?: string, filters?: FilterOptions) => {
     try {
       setLoading(true);
       if (!user?.id) {
         toast.error('User not found');
         return;
       }
-      const filters: any = { userId: user.id };
+      const apiFilters: any = { userId: user.id };
       if (search) {
-        filters.search = search;
+        apiFilters.search = search;
       }
-      const data = await listingsApi.getAll(filters);
+      if (filters?.categoryId) {
+        apiFilters.categoryId = filters.categoryId;
+      }
+      if (filters?.condition) {
+        apiFilters.condition = filters.condition;
+      }
+      if (filters?.minPrice !== undefined) {
+        apiFilters.minPrice = filters.minPrice;
+      }
+      if (filters?.maxPrice !== undefined) {
+        apiFilters.maxPrice = filters.maxPrice;
+      }
+      const data = await listingsApi.getAll(apiFilters);
       setListings(data);
     } catch (error: any) {
       const errorMessage =
@@ -43,11 +59,16 @@ const MyListings = () => {
 
   const handleSearch = (query: string) => {
     setSearchQuery(query);
-    fetchMyListings(query);
+    fetchMyListings(query, activeFilters);
   };
 
   const handleFilterClick = () => {
-    toast.info('Filter feature coming soon!');
+    setIsFilterOpen(true);
+  };
+
+  const handleApplyFilters = (filters: FilterOptions) => {
+    setActiveFilters(filters);
+    fetchMyListings(searchQuery, filters);
   };
 
   const handleAddListing = () => {
@@ -79,7 +100,7 @@ const MyListings = () => {
 
   return (
     <div className="my-listings-page">
-      <Header onSearch={handleSearch} onFilterClick={handleFilterClick} />
+      <Header onSearch={handleSearch} onFilterClick={handleFilterClick} showFilter={true} showSearch={true} />
 
       <main className="my-listings-content">
         <div className="my-listings-container">
@@ -132,6 +153,13 @@ const MyListings = () => {
           )}
         </div>
       </main>
+
+      <FilterModal
+        isOpen={isFilterOpen}
+        onClose={() => setIsFilterOpen(false)}
+        onApply={handleApplyFilters}
+        currentFilters={activeFilters}
+      />
     </div>
   );
 };
